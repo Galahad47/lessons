@@ -185,7 +185,7 @@ def task12(data):
     for i in data:
         text.append(list(map(list,i)))
   
-            
+       dsfdsfsd     
             
 
     
