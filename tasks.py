@@ -1,5 +1,7 @@
 import numpy as np
 import string
+import random
+import num2words as n2w
 # 1
 def task1():
     dedus = "viktor Dzoi jhiv !"
@@ -179,14 +181,146 @@ def task11(data):
 
 
 
-
 def task12(data):
-    d = []; a = []; text = []
+    text = []
     for i in data:
         text.append(list(map(list,i)))
-  
-       dsfdsfsd     
-            
+    text = [item for sublist in text for item in sublist]
+    text = ''.join(text)
+    text_no_point = text.translate(str.maketrans('', '', string.punctuation))
 
+    return text_no_point
+
+
+def task13(file1, file2, output_file):
+    with open(file1, 'r') as f1, open(file2, 'r') as f2, open(output_file, 'w') as fo:
+        lines1 = set(line.strip() for line in f1)
+        lines2 = set(line.strip() for line in f2)
+        unique_lines = lines1 - lines2
+        for line in unique_lines:
+            fo.write(line + '\n')
+
+
+
+def task14(data):
+    lat_let = list(string.ascii_lowercase)
+    data = data.lower()
+    letter = sorted(set(filter(lambda x: x in lat_let, text)))
+    return letter
+# Приедешь я спрошу потому что по идее так он будет выдавать всё кроме латинских букв
+
+
+
+#data1 - это массив который уже отсортирован а data2 - это искомая величина
+def task15(data1,data2 ): 
+    min = 0
+    max = len(data1) - 1
+    while min <= max:
+        med = (min + max) / 2
+        if data1[med] == data2:
+            return med + 1
+        elif data1[med < data2]:
+            min = med + 1 #сдвиг влево
+        else:
+            max = med - 1 # вправо
+
+#Тут я не понял, а если не найти значение?
+
+def task16(matrix):
+    resmatrix = []
+    for i in matrix:
+        a = 0 #нули
+        b = 0 # <0
+        for el in i:
+            if el == 0:
+                a = a + 1
+            elif el < 0:
+                b = b + 1
+        if a <= b:
+            resmatrix.append(i)
+    print(resmatrix)
+
+
+def task17(data):
+    res = []
+    def a(num):
+        if num <=1:
+            return False
+        elif num <= 3:
+            return True
+        else:
+            for i in range(1,num):
+                if num % i == 0:
+                    return False
+            return True
     
-data = open("./text.txt","r"); print(task12(data))
+    for i in range(len(data)):
+        if not a(data[i]):
+            res.append(data[i])
+        print(res)
+##########################################################################
+# Вот тут прикольно, я тут прям из книги часть скрипта копипастил, там есть после объяснения кортежей есть создание словаря, тут он пригодится чтобы хранить слова из текста
+# Я решил не удалять мои попытки они смешные довольно)
+# def task18(data):
+#     alpth = {}
+#     res = ""
+#     for i in range(len(data)):
+#         if data[i] in alpth:
+#             alpth[data[i]].append(i)
+#         else:
+#             alpth[data[i]] = [i]
+    
+#     for j in alpth.keys():
+#         pos = alpth[j]
+#         random.shuffle(pos)
+#         res = res + (j * len(pos) + ''.join([j for _ in pos]))
+    print(res)
+
+    # def start():
+    #     data = []
+    #     for i in list(open("text.txt","r")):
+    #         data.append(i)
+    #     return data
+
+
+# data = "Data Scientist"
+# # data = data + str(open("text.txt"))
+# print(task18(data))
+# print(data)
+#########################################################################
+
+def task18_1(data):
+    dat = ""
+    resultWord = ""
+    alphavet = {}
+    res = ""
+    for i in data:
+        a = dat.join(i)
+        d = a.split()
+        for j in d:
+            if len(j) > 3:
+                m = len(j) // 2
+                pos = alphavet[j]
+                random.shuffle(pos)
+                resultWord += j[:1] + j[-1] + ''.join([j[i] for i in pos[:m]])
+                alphavet[j] = pos
+            else:
+                res += j + " "
+    return res
+
+
+# data = open("text.txt","r")
+# task18_1(data)
+
+
+def task19(num):
+    for i in num:
+        text = n2w.num2words(i)
+        if i > 999999:
+            print("Не знаю, помню только до миллиона")
+        else:
+            print(text)
+
+number = input("Введите через пробел числа: ").split()
+number = [int(value) for value in number]
+print(number,"\n",task19(number))
