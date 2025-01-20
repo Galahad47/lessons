@@ -161,37 +161,26 @@ def task9(thing):
     return result
 
 
-#task 10
+# Task 10
 def task10(thing):
-    data = []; main = []
+    main = []
     for i in range(len(thing)):
-        data.append(thing[i])
-        for j in thing:
-            main = data[j],data[j-1]
+        if i > 0:  # Проверка, чтобы избежать выхода за пределы списка
+            main.append((thing[i], thing[i-1]))
     print(main)
 
-
+# Task 11
 def task11(data):
-    d = []; a = []; t = []
-    for i in data:
-        d.append(i)
-        a.append(len(i))
-    t.append(np.min(a))
-    return t
+    lengths = [len(i) for i in data]
+    return [np.min(lengths)] if lengths else []
 
-
-
+# Task 12
 def task12(data):
-    text = []
-    for i in data:
-        text.append(list(map(list,i)))
-    text = [item for sublist in text for item in sublist]
-    text = ''.join(text)
+    text = ''.join([''.join(map(str, sublist)) for sublist in data])
     text_no_point = text.translate(str.maketrans('', '', string.punctuation))
-
     return text_no_point
 
-
+# Task 13
 def task13(file1, file2, output_file):
     with open(file1, 'r') as f1, open(file2, 'r') as f2, open(output_file, 'w') as fo:
         lines1 = set(line.strip() for line in f1)
@@ -200,64 +189,53 @@ def task13(file1, file2, output_file):
         for line in unique_lines:
             fo.write(line + '\n')
 
-
-
-def task14(data):
-    lat_let = list(string.ascii_lowercase)
-    data = data.lower()
+# Task 14
+def task14(text):
+    lat_let = set(string.ascii_lowercase)
+    text = text.lower()
     letter = sorted(set(filter(lambda x: x in lat_let, text)))
     return letter
-# Приедешь я спрошу потому что по идее так он будет выдавать всё кроме латинских букв
 
-
-
-#data1 - это массив который уже отсортирован а data2 - это искомая величина
-def task15(data1,data2 ): 
-    min = 0
-    max = len(data1) - 1
-    while min <= max:
-        med = (min + max) / 2
-        if data1[med] == data2:
-            return med + 1
-        elif data1[med < data2]:
-            min = med + 1 #сдвиг влево
+# Task 15
+def task15(data1, data2):
+    min_index = 0
+    max_index = len(data1) - 1
+    while min_index <= max_index:
+        med_index = (min_index + max_index) // 2  # Используем целочисленное деление
+        if data1[med_index] == data2:
+            return med_index
+        elif data1[med_index] < data2:
+            min_index = med_index + 1
         else:
-            max = med - 1 # вправо
+            max_index = med_index - 1
+    return -1  # Возвращаем -1, если значение не найдено
 
-#Тут я не понял, а если не найти значение?
-
+# Task 16
 def task16(matrix):
     resmatrix = []
-    for i in matrix:
-        a = 0 #нули
-        b = 0 # <0
-        for el in i:
-            if el == 0:
-                a = a + 1
-            elif el < 0:
-                b = b + 1
-        if a <= b:
-            resmatrix.append(i)
+    for row in matrix:
+        count_zeros = row.count(0)
+        count_negatives = sum(1 for el in row if el < 0)
+        if count_zeros <= count_negatives:
+            resmatrix.append(row)
     print(resmatrix)
 
-
+# Task 17
 def task17(data):
     res = []
-    def a(num):
-        if num <=1:
+    def is_prime(num):
+        if num <= 1:
             return False
-        elif num <= 3:
-            return True
-        else:
-            for i in range(1,num):
-                if num % i == 0:
-                    return False
-            return True
+        for i in range(2, int(num**0.5) + 1):  # Проверка делимости до корня из num
+            if num % i == 0:
+                return False
+        return True
     
-    for i in range(len(data)):
-        if not a(data[i]):
-            res.append(data[i])
-        print(res)
+    for number in data:
+        if not is_prime(number):
+            res.append(number)
+    print(res)
+    
 ##########################################################################
 # Вот тут прикольно, я тут прям из книги часть скрипта копипастил, там есть после объяснения кортежей есть создание словаря, тут он пригодится чтобы хранить слова из текста
 # Я решил не удалять мои попытки они смешные довольно)
@@ -324,3 +302,27 @@ def task19(num):
 number = input("Введите через пробел числа: ").split()
 number = [int(value) for value in number]
 print(number,"\n",task19(number))
+
+
+
+# def task20():
+
+
+def task21(str1, str2):
+    n, m = len(str1), len(str2)
+    if n > m:
+        str1, str2 = str2, str1
+        n, m = m, n
+
+    current_row = range(n + 1)
+    for i in range(1, m + 1):
+        previous_row, current_row = current_row, [i] + [0] * n
+        for j in range(1, n + 1):
+            add, delete, change = previous_row[j] + 1, current_row[j - 1] + 1, previous_row[j - 1]
+            if str1[j - 1] != str2[i - 1]:
+                change += 1
+            current_row[j] = min(add, delete, change)
+
+    return current_row[n]
+
+
