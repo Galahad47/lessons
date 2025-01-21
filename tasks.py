@@ -4,7 +4,7 @@ import random
 import num2words as n2w
 # 1
 def task1():
-    dedus = "viktor Dzoi jhiv !"
+    dedus = "viktor Tsoi jhiv !"
     l = ""
     for i in reversed(dedus):
         l = l + i
@@ -146,19 +146,19 @@ def task8(matrix):
 
 
 
-def task9(thing):
-    result = []
-    fractional_elements = [x for x in thing if isinstance(x, float)]
-    largest_fractions = sorted(fractional_elements, reverse=True)[:3]
-
-    for x in thing:
-        result.append(x)
-        # Если текущий элемент - один из трех наибольших дробных, то добавляем
-        if x in largest_fractions:
-            half_sum = x / 2
-            result.append(half_sum)
-
-    return result
+def task9(numbers):
+    a = [];b=[]; l = []
+    for i in numbers:
+        if (i % 1) > 0:
+            a.append(i)
+    d = sorted(a)
+    for j in d:
+        b.append(j)
+    
+    s = sum(b[:3])/2;l.append(s)
+    b.extend(l)
+    print(b)
+    
 
 
 # Task 10
