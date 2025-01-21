@@ -155,8 +155,11 @@ def task9(numbers):
     for j in d:
         b.append(j)
     
-    s = sum(b[:3])/2;l.append(s)
-    b.extend(l)
+    for i in range(0, len(b), 3):
+        s = sum(b[i:i+3]) / 2
+        l.append(s)
+        b.extend(l)
+    
     print(b)
     
 
