@@ -145,8 +145,8 @@ def task8(matrix):
     return new_matrix
 
 
-
-def task9(numbers):
+#step - шаг через какое число ты хочешь узнать получумму
+def task9(numbers,step):
     a = [];b=[]; l = []
     for i in numbers:
         if (i % 1) > 0:
@@ -155,7 +155,7 @@ def task9(numbers):
     for j in d:
         b.append(j)
     
-    for i in range(0, len(b), 3):
+    for i in range(0, len(b), step):
         s = sum(b[i:i+3]) / 2
         l.append(s)
         b.extend(l)
