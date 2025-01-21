@@ -228,10 +228,10 @@ def task17(data):
     res = []
     def is_prime(num):
         if num <= 1:
-            return False
+            return 0
         for i in range(2, int(num**0.5) + 1):  # Проверка делимости до корня из num
             if num % i == 0:
-                return False
+                return 0
         return True
     
     for number in data:
@@ -239,38 +239,8 @@ def task17(data):
             res.append(number)
     print(res)
     
-##########################################################################
-# Вот тут прикольно, я тут прям из книги часть скрипта копипастил, там есть после объяснения кортежей есть создание словаря, тут он пригодится чтобы хранить слова из текста
-# Я решил не удалять мои попытки они смешные довольно)
-# def task18(data):
-#     alpth = {}
-#     res = ""
-#     for i in range(len(data)):
-#         if data[i] in alpth:
-#             alpth[data[i]].append(i)
-#         else:
-#             alpth[data[i]] = [i]
-    
-#     for j in alpth.keys():
-#         pos = alpth[j]
-#         random.shuffle(pos)
-#         res = res + (j * len(pos) + ''.join([j for _ in pos]))
-    print(res)
 
-    # def start():
-    #     data = []
-    #     for i in list(open("text.txt","r")):
-    #         data.append(i)
-    #     return data
-
-
-# data = "Data Scientist"
-# # data = data + str(open("text.txt"))
-# print(task18(data))
-# print(data)
-#########################################################################
-
-def task18_1(data):
+def task18(data):
     dat = ""
     resultWord = ""
     alphavet = {}
@@ -288,10 +258,6 @@ def task18_1(data):
             else:
                 res += j + " "
     return res
-
-
-# data = open("text.txt","r")
-# task18_1(data)
 
 
 def task19(num):
