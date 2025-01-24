@@ -146,6 +146,7 @@ def task8(matrix):
 
 
 #step - шаг через какое число ты хочешь узнать получумму
+#Task 9
 def task9(numbers,step):
     a = [];b=[]; l = []
     for i in numbers:
