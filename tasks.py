@@ -196,13 +196,39 @@ def task12(data):
     print(d)
 
 # Task 13
+# def task13(file1, file2, output_file):
+#     with open(file1, 'r') as f1, open(file2, 'r') as f2, open(output_file, 'w') as fo:
+#         lines1 = set(line.strip() for line in f1)
+#         lines2 = set(line.strip() for line in f2)
+#         unique_lines = lines1 - lines2
+#         for line in unique_lines:
+#             fo.write(line + '\n')
 def task13(file1, file2, output_file):
-    with open(file1, 'r') as f1, open(file2, 'r') as f2, open(output_file, 'w') as fo:
-        lines1 = set(line.strip() for line in f1)
-        lines2 = set(line.strip() for line in f2)
-        unique_lines = lines1 - lines2
-        for line in unique_lines:
-            fo.write(line + '\n')
+    punctuations = [',' '.' ' ']
+    t1 = open(file1,'r'); t2 = open(file2); t3 = open(output_file,'w')
+    data1=[];data2=[];data3=[]
+    for i in t1:
+        for j in t2:
+            data1.append(i)
+            data2.append(j)
+    
+    
+    
+    
+        
+        
+        
+
+p1='/home/andrew/Documents/fortask13/text.txt'
+p2='/home/andrew/Documents/fortask13/text1.txt'
+p3='/home/andrew/Documents/fortask13/result.txt'
+
+task13(p1,p2,p3)
+        
+
+
+
+
 
 # Task 14
 def task14(text):
