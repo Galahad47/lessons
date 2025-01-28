@@ -190,8 +190,9 @@ def task12(data):
     for i in range(len(data)):
         print(i)
         if data[i] != ' ':
-            if data[i] != ',':
-                d.append(data[i])
+            if data[i] !='.':
+                if data[i] != ',':
+                    d.append(data[i])
     print(d)
 
 # Task 13
