@@ -172,10 +172,10 @@ def task10(thing):
     for i in thing:
         if i !=" ":
             main.append(i)
-    for j in range(len(main)):
+    for j in range(len(main)//2): 
         if main[j] != main[-j-1]:
-            val += 1
-    print(val/2)
+            val += 1        
+    print(val)
 
 # Task 11
 def task11(data):
