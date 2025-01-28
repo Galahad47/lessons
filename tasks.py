@@ -179,14 +179,20 @@ def task10(thing):
 
 # Task 11
 def task11(data):
-    lengths = [len(i) for i in data]
-    return [np.min(lengths)] if lengths else []
+    t = data.split()
+    min_word = min(t,key=len)
+    t.remove(min_word)
+    return " ".join(t)
 
 # Task 12
 def task12(data):
-    text = ''.join([''.join(map(str, sublist)) for sublist in data])
-    text_no_point = text.translate(str.maketrans('', '', string.punctuation))
-    return text_no_point
+    d = []
+    for i in range(len(data)):
+        print(i)
+        if data[i] != ' ':
+            if data[i] != ',':
+                d.append(data[i])
+    print(d)
 
 # Task 13
 def task13(file1, file2, output_file):
