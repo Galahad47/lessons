@@ -167,11 +167,15 @@ def task9(numbers,step):
 
 # Task 10
 def task10(thing):
-    main = []
-    for i in range(len(thing)):
-        if i > 0:  # Проверка, чтобы избежать выхода за пределы списка
-            main.append((thing[i], thing[i-1]))
-    print(main)
+    val = 0
+    main = []; d1=[];d2=[]
+    for i in thing:
+        if i !=" ":
+            main.append(i)
+    for j in range(len(main)):
+        if main[j] != main[-j-1]:
+            val += 1
+    print(val/2)
 
 # Task 11
 def task11(data):
