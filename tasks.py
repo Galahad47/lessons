@@ -204,32 +204,15 @@ def task12(data):
 #         for line in unique_lines:
 #             fo.write(line + '\n')
 def task13(file1, file2, output_file):
-    punctuations = [',' '.' ' ']
-    t1 = open(file1,'r'); t2 = open(file2); t3 = open(output_file,'w')
-    data1=[];data2=[];data3=[]
+    t1 = open(file1,'r'); t2 = open(file2,'r'); t3 = open(output_file,'w')
+    data1=[];data2=[]
     for i in t1:
         for j in t2:
-            data1.append(i)
-            data2.append(j)
-    
-    
-    
-    
-        
-        
-        
-
-p1='/home/andrew/Documents/fortask13/text.txt'
-p2='/home/andrew/Documents/fortask13/text1.txt'
-p3='/home/andrew/Documents/fortask13/result.txt'
-
-task13(p1,p2,p3)
-        
-
-
-
-
-
+            data1.append(i.split(' ')); data2.append(j.split(' '))
+    for i in range(len(data1)):
+        for j in range(len(data2)):
+            if data1[i] != data2[j]:
+                t3.write(str(data1[i]))
 # Task 14
 def task14(text):
     lat_let = set(string.ascii_lowercase)
