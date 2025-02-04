@@ -204,15 +204,21 @@ def task13(file1, file2, output_file):
             if data1[i] != data2[j]:
                 t3.write(str(data1[i]))
 # Task 14
-def task14(file1):
-    t = open(file1,'r');d1=[];d2=[]
-    alpha = 'qwertyuiopasdfghjklzxcvbnm'; ALPHA = 'QWERTYUIOPASDFGHJKLZXCVBNM'
-    for i in t:
-        d1.append(i.split(' '))    
-        for j in range(len(d1)):
-            if d1[j] == alpha or ALPHA:
-                d2.append(d1[j])
-    return d2
+def task14(data):
+    t1 = 'abcdefghijklmnopqrstuvwxyz';t2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    a1 = []; a2 = []; all = []; n = 0 
+    for i in t1:
+        for j in t2:
+            a1.append(i); a2.append(j)
+    for i in data:
+        all.append(i)
+        if all == a1 or a2:
+            n += 1
+        print(n)
+    
+data = 'Heiznberg бубубубу ляляляляля das machine gut'
+d = task14(data)
+print(d)
 
 # Task 15
 def task15(data1, data2):
