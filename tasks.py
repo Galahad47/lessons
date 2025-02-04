@@ -214,11 +214,15 @@ def task13(file1, file2, output_file):
             if data1[i] != data2[j]:
                 t3.write(str(data1[i]))
 # Task 14
-def task14(text):
-    lat_let = set(string.ascii_lowercase)
-    text = text.lower()
-    letter = sorted(set(filter(lambda x: x in lat_let, text)))
-    return letter
+def task14(file1):
+    t = open(file1,'r');d1=[];d2=[]
+    alpha = 'qwertyuiopasdfghjklzxcvbnm'; ALPHA = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+    for i in t:
+        d1.append(i.split(' '))    
+        for j in range(len(d1)):
+            if d1[j] == alpha or ALPHA:
+                d2.append(d1[j])
+    return d2
 
 # Task 15
 def task15(data1, data2):
