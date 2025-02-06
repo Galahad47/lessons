@@ -1,7 +1,3 @@
-import numpy as np
-import string
-import random
-import num2words as n2w
 # 1
 def task1():
     dedus = "viktor Tsoi jhiv !"
