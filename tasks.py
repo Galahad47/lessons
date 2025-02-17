@@ -144,18 +144,22 @@ def task8(matrix):
 #step - шаг через какое число ты хочешь узнать получумму
 #Task 9
 def task9(numbers):
-    a = [];b=[]; l = []; d=[]
+    a = [];b=[];c=[];d=[]
     for i in numbers:
+        a.append(i)
         if (i % 1) > 0:
-            a.append(i)
-    for j in sorted(a):
-        b.append(j)
-    for e in range(0,len(b),3):
-        s = sum(b[e:e+3])/2
-        l.append(s)
-    for i in range(len(b) - 1, len(b)-4,-1):
-        b.insert(i+1,l[1])
-    print(b)
+            b.append(i)
+            b = sorting(b)
+    psum = sum(b[-3:])/2
+    for i,datai in enumerate(a):
+        for j,dataj in enumerate(b[-3:]):
+            if datai == dataj:
+                c.append(i)
+    for i,dat in enumerate(a):
+        d.append(dat)
+        if i in c:
+            d.append(psum)
+    return d
     
 
 
