@@ -248,14 +248,14 @@ def task15(x,b):
     return "нет значений"
 
 # Task 16
-def task16(matrix):
-    resmatrix = []
-    for row in matrix:
-        count_zeros = row.count(0)
-        count_negatives = sum(1 for el in row if el < 0)
-        if count_zeros <= count_negatives:
-            resmatrix.append(row)
-    print(resmatrix)
+# def task16(matrix):
+#     resmatrix = []
+#     for row in matrix:
+#         count_zeros = row.count(0)
+#         count_negatives = sum(1 for el in row if el < 0)
+#         if count_zeros <= count_negatives:
+#             resmatrix.append(row)
+#     print(resmatrix)
 
 # Task 17
 def ioni(a):
@@ -295,7 +295,30 @@ def task18(data):
 
 
 
+def task19(n):
+    units = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять']
+    teens = ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать']
+    tens = ['', 'десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто']
+    hundreds = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'] 
+    if n < 0 or n > 999999:
+        return "Число больше 999999"
+    if n == 0:
+        return "ноль"
+    words = []
+    hundreds_place = n // 100
+    if hundreds_place > 0:
+        words.append(hundreds[hundreds_place])
+    tens_place = (n % 100) // 10
+    units_place = n % 10
+    if tens_place == 1 and units_place > 0:
+        words.append(teens[units_place])
+    else:
+        if tens_place > 0:
+            words.append(tens[tens_place])
+        if units_place > 0:
+            words.append(units[units_place])
 
+    return ' '.join(words).strip()
 
 
 def task21(s1, s2):
