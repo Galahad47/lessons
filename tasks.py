@@ -258,20 +258,20 @@ def task16(matrix):
     print(resmatrix)
 
 # Task 17
-def task17(data):
-    res = []
-    def is_prime(num):
-        if num <= 1:
-            return 0
-        for i in range(2, int(num**0.5) + 1):  # Проверка делимости до корня из num
-            if num % i == 0:
-                return 0
-        return True
-    
-    for number in data:
-        if not is_prime(number):
-            res.append(number)
-    print(res)
+def ioni(a):
+    if a <=1:
+        return -1
+    for i in range(2,int(a**0.5)+1):
+        if a % i ==0:
+            return False
+    return True
+def remioni(a):
+    x = len(a)//2;y=a[:x]
+    data = []
+    for i in y:
+        if not ioni(i):
+            data.append(i)
+    return data
     
 
 def task18(data):
