@@ -160,6 +160,7 @@ def task9(numbers):
         if i in c:
             d.append(psum)
     return d
+
     
 
 
@@ -193,46 +194,58 @@ def task12(data):
                     d.append(data[i])
     print(d)
 
-def task13(file1, file2, output_file):
-    t1 = open(file1,'r'); t2 = open(file2,'r'); t3 = open(output_file,'w')
-    data1=[];data2=[]
-    for i in t1:
-        for j in t2:
-            data1.append(i.split(' ')); data2.append(j.split(' '))
-    for i in range(len(data1)):
-        for j in range(len(data2)):
-            if data1[i] != data2[j]:
-                t3.write(str(data1[i]))
+# Task 13
+def task13(p1,p2):
+    with open(p1, "r",encoding="utf-8") as t1, open(p2, "r",encoding="utf-8") as t2:
+        text1 = t1.read().split(".");text2 = t2.read().split(".");text3 = []
+        if text1 != text2:
+            text3.append(text1)
+        return text3
+         
+# p1 = "D:/work/aari/text.txt";p2 = "D:/work/aari/text1.txt"
+# d = task13(p1,p2)
+# print(d)
+
 # Task 14
-def task14(data):
-    t1 = 'abcdefghijklmnopqrstuvwxyz';t2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    a1 = []; a2 = []; all = []; n = 0 
-    for i in t1:
-        for j in t2:
-            a1.append(i); a2.append(j)
-    for i in data:
-        all.append(i)
-        if all == a1 or a2:
-            n += 1
-        print(n)
-    
-data = 'Heiznberg бубубубу ляляляляля das machine gut'
-d = task14(data)
-print(d)
+def task14(p1):
+    with open(p1, "r", encoding="utf-8") as t1:
+        text1 = t1.read()
+        x = 0
+        latin_letter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        for i in text1:
+            for j in range(0,len(latin_letter)):
+                if i in latin_letter[j]:
+                    x += 1
+        return x
+
+# p1 = "D:/work/aari/text.txt"
+# d = task14(p1)
+# print(d)
 
 # Task 15
-def task15(data1, data2):
-    min_index = 0
-    max_index = len(data1) - 1
-    while min_index <= max_index:
-        med_index = (min_index + max_index) // 2  # Используем целочисленное деление
-        if data1[med_index] == data2:
-            return med_index
-        elif data1[med_index] < data2:
-            min_index = med_index + 1
+def task15(x,b):
+    d = []
+    n = len(x)
+    for i in range(n):
+        swapped = False 
+        for j in range(0, n - i - 1): 
+            if x[j] < x[j + 1]: 
+                x[j], x[j + 1] = x[j + 1], x[j]  
+            swapped = True
+        if not swapped:
+            break
+    d.append(x)
+    print(d)
+    ind0 = 0;indlas = len(x) - 1
+    while ind0 <= indlas:
+        indmed = (ind0 + indlas) // 2
+        if x[indmed] == b:
+            return indmed
+        elif b > x[indmed]:
+            indlas = indmed - 1
         else:
-            max_index = med_index - 1
-    return -1  # Возвращаем -1, если значение не найдено
+            ind0 = indmed + 1
+    return "нет значений"
 
 # Task 16
 def task16(matrix):
@@ -281,38 +294,26 @@ def task18(data):
     return res
 
 
-def task19(num):
-    for i in num:
-        text = n2w.num2words(i)
-        if i > 999999:
-            print("Не знаю, помню только до миллиона")
-        else:
-            print(text)
-
-number = input("Введите через пробел числа: ").split()
-number = [int(value) for value in number]
-print(number,"\n",task19(number))
 
 
 
-# def task20():
 
-
-def task21(str1, str2):
-    n, m = len(str1), len(str2)
-    if n > m:
-        str1, str2 = str2, str1
-        n, m = m, n
-
-    current_row = range(n + 1)
-    for i in range(1, m + 1):
-        previous_row, current_row = current_row, [i] + [0] * n
-        for j in range(1, n + 1):
-            add, delete, change = previous_row[j] + 1, current_row[j - 1] + 1, previous_row[j - 1]
-            if str1[j - 1] != str2[i - 1]:
-                change += 1
-            current_row[j] = min(add, delete, change)
-
-    return current_row[n]
-
-
+def task21(s1, s2):
+    t1 = len(s1);t2 = len(s2)
+    if t1 < t2:
+        return task21(s2, s1)
+    if t2 == 0:
+        return t1
+    x = range(t2 + 1)
+    for i, c1 in enumerate(s1):
+        y = [i + 1]
+        for j, c2 in enumerate(s2):
+            a = x[j + 1] + 1 
+            b = y[j] + 1       
+            c = x[j] + (c1 != c2)
+            y.append(min(a, b, c))
+        x = y
+    return x[-1]
+s1 = "kitten"
+s2 = "sitting"
+result = task21(s1, s2)
