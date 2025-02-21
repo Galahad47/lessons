@@ -195,16 +195,12 @@ def task12(data):
     print(d)
 
 # Task 13
-def task13(p1,p2):
-    with open(p1, "r",encoding="utf-8") as t1, open(p2, "r",encoding="utf-8") as t2:
-        text1 = t1.read().split(".");text2 = t2.read().split(".");text3 = []
-        if text1 != text2:
-            text3.append(text1)
-        return text3
-         
-# p1 = "D:/work/aari/text.txt";p2 = "D:/work/aari/text1.txt"
-# d = task13(p1,p2)
-# print(d)
+def task13(p1,p2,p3):
+    with open(p1, "r",encoding="utf-8") as t1, open(p2, "r",encoding="utf-8") as t2, open(p3, "w+t",encoding="utf-8") as t3:
+        text1 = t1.read().splitlines();text2 = t2.read().splitlines()
+        for i in text1:
+            if i not in text2:
+                t3.write(i+"\n")  
 
 # Task 14
 def task14(p1):
